@@ -1,12 +1,20 @@
+//Require - Dependencies
 const express = require("express");
 const app = express();
 const path = require("path");
 const fs = require("fs");
-const { searchAndDelete, simpleNote } = require("./write");
+const {
+  searchDelete,
+  note
+} = require("./write");
 
+//Port
 const port = process.env.PORT || 3001;
 
-app.use(express.urlencoded({ extended: true }));
+
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 
 app.use("/", express.static("./public"));
@@ -24,7 +32,7 @@ app.get("/api/notes", function (req, res) {
 });
 
 app.post("/api/notes", function (req, res) {
-  simpleNote(req.body);
+  note(req.body);
   fs.readFile("./db/db.json", function (err, data) {
     if (err) console.log(err);
     let stored = JSON.parse(data);
@@ -33,7 +41,7 @@ app.post("/api/notes", function (req, res) {
 });
 
 app.delete("/api/notes/:id", function (req, res) {
-  searchAndDelete(req.params);
+  searchDelete(req.params);
   fs.readFile("./db/db.json", function (err, data) {
     if (err) console.log(err);
     let stored = JSON.parse(data);
