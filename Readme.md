@@ -33,7 +33,7 @@
   See it in action:
   https://robertsicher.github.io/homework_11_express/
   
-  ![An image of it in action ](application-image)
+  ![An image of it in action ](application-image.png)
   
   
   ## Author
